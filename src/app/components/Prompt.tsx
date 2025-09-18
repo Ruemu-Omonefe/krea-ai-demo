@@ -66,7 +66,7 @@ export default function Prompt() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {items.map(({ title, description, icon: Icon, badge, color }, i) => (
-            <div key={i} className="flex items-start justify-between gap-4 p-4 bg-transparent hover:shadow transition cursor-pointer">
+            <div key={i} className="flex items-start justify-between gap-4 py-4 md:px-4 bg-transparent hover:shadow transition cursor-pointer">
               <div className="flex gap-3">
                 <div className={`w-10 h-10 flex items-center justify-center rounded-lg text-white bg-gray-100 shrink-0 ${color}`}><Icon size={20} /> </div>
                 <div>

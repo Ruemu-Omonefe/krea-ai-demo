@@ -2,13 +2,13 @@
 
 import Hero from "./components/Hero";
 import { BookCopy, Banknote } from "lucide-react";
-import Prompt from "./prompt/page";
+import Prompt from "./components/Prompt";
 
 
 export default function Home() {
 
   return (
-    <div className="bg-background items-center justify-items-center py-8 pl-8 pb-20 gap-16">
+    <div className="bg-background items-center justify-items-center py-8 pb-20 gap-16">
       {/* Hero Section */}
       <Hero />
       {/* Prompt Section */}

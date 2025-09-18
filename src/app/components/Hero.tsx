@@ -45,11 +45,12 @@ const slides = [
 
 export default function Hero() {
   return (
-    <section className="w-full mx-auto mt-12">
+    <section className="w-full mx-auto mt-12 pl-6 md:pl-8 pr-6 md:pr-0">
         <Swiper
             modules={[Navigation, Pagination]}
             spaceBetween={30}
-            slidesPerView={1.5}
+            slidesPerView={1}
+            breakpoints={{ 768: { slidesPerView: 1.5 }}}
             pagination={{ el: ".custom-pagination", clickable: true, }}
             navigation={{ nextEl: ".custom-next", prevEl: ".custom-prev",}}
             className="w-full h-[400px] md:h-[500px]  overflow-hidden"
