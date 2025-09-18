@@ -1,5 +1,8 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
 :root {
     --background: #ffff;
     --foreground: #171717;
@@ -15,4 +18,21 @@
     --color-foreground: var(--foreground);
     --font-sans: var(--font-geist-sans);
     --font-mono: var(--font-geist-mono);
+}
+
+body {
+    background: var(--background);
+    font-family: var(--font-inter);
+}
+
+.dark .swiper-pagination-bullet {
+    background-color: rgb(212, 214, 215) !important;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: rgb(17 24 39) !important;
+}
+
+.dark .swiper-pagination-bullet-active {
+    background-color: rgb(243 244 246) !important;
 }

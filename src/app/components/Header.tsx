@@ -2,9 +2,11 @@
 
 import NextImage from "next/image";
 import ThemeToggle from "./ThemeToggle";
+import { useTheme } from "next-themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {Home, Image, Video, Wand2, Pen, Ruler, Folder, Bell, BookImage} from "lucide-react";
+import {Home, Image, Video, Wand2, Pen, Ruler, Folder, Bell, BookImage, ChevronDown} from "lucide-react";
+import { useState } from "react";
 
 const navItems = [
   { path: "/", icon: Home },
@@ -18,20 +20,34 @@ const navItems = [
 
 export default function Header() {
   const pathname = usePathname();
+  const [dropdown, setDropdown] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 flex justify-between items-center px-4 md:px-6 py-3 bg-background">
+    <header className="sticky top-0 z-50 flex justify-between items-center px-4 md:px-6 py-3 bg-transparent">
       {/* Left */}
       <div className="flex items-center gap-8">
-        <NextImage src="/images/k-logo.png" alt="Logo" className="w-8 h-8" width={32} height={32} />
+        <NextImage src="/images/logo-dark.png" alt="Logo" className="w-8 h-8 hidden dark:block" width={32} height={32} />
+        <NextImage src="/images/logo-light.jpg" alt="Logo" className="w-8 h-8 dark:hidden" width={32} height={32} />
+        {/* Profile btn */}
+        <div className="relative">
+          <button onClick={() => setDropdown(!open)} className="hidden sm:flex items-center gap-2 ">
+            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-pink-200 to-blue-400"></div>
+            <span className="font-semibold text-gray-900 dark:text-gray-100">benevolenttime</span>
+            <ChevronDown className={`h-4 w-4 text-gray-600 dark:text-gray-300 transition-transform ${ dropdown ? "rotate-180" : "" }`}/>
+          </button>
 
-        <div className="hidden sm:flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-pink-200 to-blue-400"></div>
-          <span className="font-semibold text-gray-900 dark:text-gray-100">benevolenttime</span>
+          {/* Dropdown menu */}
+          {dropdown && (
+            <div className="absolute right-0 mt-2 w-48 rounded-lg shadow-lg bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 py-2 z-50">
+              <a href="#" className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-neutral-800"> Profile </a>
+              <a href="#" className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-neutral-800"> Settings </a>
+              <button className="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-neutral-800" > Logout </button>
+            </div>
+          )}
         </div>
       </div>
-      {/* Center Toolbar */}
-      <nav className="flex items-center bg-gray-100 dark:bg-neutral-900 rounded-2xl px-2 py-1 overflow-x-auto scrollbar-hide">
+      {/* Toolbar */}
+      <nav className="flex items-center bg-gray-100 dark:bg-neutral-900 rounded-2xl p-1.5 overflow-x-auto scrollbar-hide absolute left-1/2 -translate-x-1/2">
         {navItems.map(({ path, icon: Icon }) => {
           const isActive = pathname === path;
           return (
@@ -56,7 +72,7 @@ export default function Header() {
         <button className="p-1.5 bg-gray-100 dark:bg-neutral-900 rounded-md cursor-pointer hover:scale-110 transition"><Bell className="text-gray-700 dark:text-gray-300" size={18} /></button>
         
         <ThemeToggle />
-        <div className="w-8 h-8 rounded-full bg-gradient-to-r from-pink-200 to-blue-400"></div>
+        <div className="w-7 h-7 rounded-full bg-gradient-to-r from-pink-200 to-blue-400"></div>
       </nav>
     </header>
   );
